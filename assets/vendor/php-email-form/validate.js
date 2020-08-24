@@ -1,8 +1,4 @@
-/**
-* PHP Email Form Validation - v2.1
-* URL: https://bootstrapmade.com/php-email-form/
-* Author: BootstrapMade.com
-*/
+
 !(function($) {
   "use strict";
 
@@ -123,14 +119,23 @@
     return true;
   });
 
-  function php_email_form_submit(this_form, action, data) {
+  function php_email_form_submit(this_form, action, data) { 
+    var vname = document.getElementById("name").value;
+    var vfrom = document.getElementById("from").value;
+    var vsubject = document.getElementById("subject").value;
+    var vmailBody = document.getElementById("mailBody").value;
+    const requestData = JSON.stringify({name: vname, from: vfrom, subject: vsubject, mailBody: vmailBody});
+    alert(requestData);
+
     $.ajax({
       type: "POST",
       url: action,
-      data: data,
+      data: requestData,
+      contentType: "application/json",
       timeout: 40000
+
     }).done( function(msg){
-      if (msg.trim() == 'OK') {
+      if (msg.trim() == 'success') {
         this_form.find('.loading').slideUp();
         this_form.find('.sent-message').slideDown();
         this_form.find("input:not(input[type=submit]), textarea").val('');
