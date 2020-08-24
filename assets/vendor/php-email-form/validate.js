@@ -124,8 +124,7 @@
     var vfrom = document.getElementById("from").value;
     var vsubject = document.getElementById("subject").value;
     var vmailBody = document.getElementById("mailBody").value;
-    /*const requestData = JSON.stringify({name: vname, from: vfrom, subject: vsubject, mailBody: vmailBody});*/
-    alert(requestData);
+    const requestData = JSON.stringify({name: vname, from: vfrom, subject: vsubject, mailBody: vmailBody});
 
     $.ajax({
       type: "POST",
